@@ -3,7 +3,23 @@
 * Version 1.0 - September 2017
 ***************************************/
 
-/****** Resets *****/
+/**
+* 0 - Resets
+* 1 - DRY
+** 1.1 - Containers
+** 1.2 - Circles
+* 2 - Sidebar
+* 3 - Dashboard
+* 4 - Temperature
+* 5 - Humidity
+* 6 - Affluence
+* 7 - Gases
+* 8 - Map
+* 9 - Circles
+* 10 - Animations
+**/
+
+/****** 0 - Resets *****/
 body{
     color: #444;
     font-family: 'Lato', Helvetica, Arial, sans-serif;
@@ -20,23 +36,45 @@ h1, h2, h3, h4, h5, h6{
     color: #073B4C;
     font-family: 'Lato', 'Helvetica', 'Arial', sans-serif;
     text-transform: uppercase;
+    margin: 0px;
 }
 
 
-/** DRY **/
+/** 1 - DRY **/
 
+/* 1.1 - Containers */
 #sidebar,
 #dashboard{
     height: 100vh;
 }
 
-/** Sidebar **/
+/* 1.2 - Card Titles */
+.temperature__title,
+.humidity__title,
+.affluence__title,
+.gases__title,
+.map__title{
+    font-size: 1.9rem;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+/* 1.3 - Circles */
+.gauge-temperature,
+.gauge-affluence,
+.gauge-humidity{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/** 2 - Sidebar **/
 
 #sidebar{
     background-color: #00B3BE;
 }
 
-/** Dashboard **/
+/** 3 - Dashboard **/
 
 #dash{
     background-color: #F3F3F3;
@@ -52,18 +90,22 @@ h1, h2, h3, h4, h5, h6{
 #temperature,
 #affluence,
 #humidity{
-    height: 240px;
+    height: 440px;
 
 }
 
 #greeting{
+    align-items: center;
+    display: flex;
     height: 100px;
-    text-align: center;
+    justify-content: center;
 }
 
 #greeting > h1{
-    font-weight: 300;
+    font-size: 3.5rem;
     font-style: normal;
+    font-weight: 300;
+    margin: 0px;
 }
 
 #gases{
@@ -72,4 +114,129 @@ h1, h2, h3, h4, h5, h6{
 
 #map{
     height: 290px;
+}
+
+/* 4 - Temperature */
+
+.gauge-temperature.gauge svg circle{
+    stroke: #00B3BE;
+}
+
+/* 5 - Humidity */
+.humidity__title{}
+#humidty > h4{
+    color: #073B4C;
+}
+.gauge-humidity.gauge svg circle {
+    stroke: #073B4C;
+}
+
+/* 6 - Affluence */
+.gauge-affluence.gauge svg circle{
+    stroke: #00B3BE;
+}
+
+.affluence__information{
+    margin-top:20px;
+}
+
+.affluence__information > .row{
+    align-items: center;
+    display: flex;
+}
+
+.affluence__unique,
+.affluence__last,
+.affluence__dwell{
+    display: flex;
+    align-items: center;
+    padding-right: 0px;
+}
+
+.affluence__unique .fa,
+.affluence__last .fa,
+.affluence__dwell .fa{
+    color: #073B4C;
+    font-size: 3rem;
+}
+
+.affluence__information p,
+.affluence__information h6{
+    margin: 0;
+}
+
+.affluence__unique div,
+.affluence__last div,
+.affluence__dwell div{
+    padding: 0px;
+}
+
+.affluence__unique_info,
+.affluence__last_info,
+.affluence__dwell_info{
+    color: #00B3BE;
+    font-size: 2.2rem;
+    font-weight: bold;
+    line-height: 2.8rem;
+}
+
+/* 7 - Gases */
+/* 8 - Map */
+
+/* 9 - Circles */
+.gauge {
+    position: relative;
+}
+
+.gauge h2 {
+    line-height: 125px;
+    position: absolute;
+    margin: 0px;
+    text-align:center;
+    width: 100%;
+}
+
+svg {
+    transform: rotate(-90deg);
+}
+
+svg circle{
+    stroke-linecap: round;
+    stroke-width: 5;
+}
+
+.circle_animation {
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+}
+
+.gauge .circle_animation {
+    animation: html 1s ease-out forwards;
+    -webkit-animation: html 1s ease-out forwards;
+}
+
+/* 10 - Animations */
+
+@-webkit-keyframes html {
+  to {
+    stroke-dashoffset: 80;
+  }
+}
+
+@keyframes html {
+  to {
+    stroke-dashoffset: 80;
+  }
+}
+
+@-webkit-keyframes css {
+  to {
+    stroke-dashoffset: 160;
+  }
+}
+
+@keyframes css {
+  to {
+    stroke-dashoffset: 160;
+  }
 }

@@ -22,21 +22,82 @@
                                 <h1>Good morning!</h1>
                             </div>
                             <div id="temperature" class="card col-md-12">
-                                <h4>Temperature</h4>
+                                <div class="temperature__title">
+                                    <h4>Temperature</h4>
+                                </div>
+                                <div class="gauge gauge-temperature">
+                                    <h2><i class="fa fa-thermometer-half" aria-hidden="true"></i> 27</h2>
+                                    <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" fill="none"/>
+                                        </g>
+                                    </svg>
+                                </div>
                             </div>
                             <div id="humidity" class="card col-md-12">
-                                <h4>Humidity</h4>
+                                <div class="humidity__title">
+                                    <h4>Humidity</h4>
+                                </div>
+                                <div class="gauge gauge-humidity">
+                                    <h2><i class="fa fa-tint" aria-hidden="true"></i> 56%</h2>
+                                    <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" fill="none"/>
+                                        </g>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div id="affluence" class="card col-md-12">
-                                <h4>Affluence</h4>
+                                <div class="affluence__title">
+                                    <h4>Affluence</h4>
+                                </div>
+                                <div class="gauge gauge-affluence">
+                                    <h2><i class="fa fa-user-o" aria-hidden="true"></i> 135</h2>
+                                    <div>
+                                        <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+                                            <g>
+                                                <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" fill="none"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="affluence__information">
+                                    <div class="row">
+                                        <div class="col-md-4 affluence__unique">
+                                            <div class="col-md-4"><i class="fa fa-users" aria-hidden="true"></i></div>
+                                            <div class="col-md-8">
+                                                <h6 class="affluence__unique_title">Unique Visitors</h6>
+                                                <p class="affluence__unique_info">200</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 affluence__last">
+                                            <div class="col-md-4"><i class="fa fa-user" aria-hidden="true"></i></div>
+                                            <div class="col-md-8">
+                                                <h6 class="affluence__last_title">Last 5mins</h6>
+                                                <p class="affluence__last_info">10</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 affluence__dwell">
+                                            <div class="col-md-4"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                                            <div class="col-md-8">
+                                                <h6 class="affluence__dwell_title">Dwell time</h6>
+                                                <p class="affluence__dwell_info">10mins</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="gases" class="card col-md-12">
-                                <h4>Gases</h4>
+                                <div class="gases__title">
+                                    <h4>Gases</h4>
+                                </div>
                             </div>
                             <div id="map" class="card col-md-12">
-                                <h4>Map</h4>
+                                <div>
+                                    <h4>Map</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -44,5 +105,6 @@
             </div>
         </div>
     </body>
+    <script src="https://use.fontawesome.com/6a96b11941.js"></script>
     <script src=""></script>
 </html>
