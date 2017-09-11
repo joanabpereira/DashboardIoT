@@ -1,0 +1,75 @@
+/***************************************
+* IoT Dashboard
+* Version 1.0 - September 2017
+***************************************/
+
+/****** Resets *****/
+body{
+    color: #444;
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
+    font-size: 1.6em;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+    margin:0px;
+    max-height: 100vh;
+    padding:0px;
+    width: 100vw;
+}
+h1, h2, h3, h4, h5, h6{
+    color: #073B4C;
+    font-family: 'Lato', 'Helvetica', 'Arial', sans-serif;
+    text-transform: uppercase;
+}
+
+
+/** DRY **/
+
+#sidebar,
+#dashboard{
+    height: 100vh;
+}
+
+/** Sidebar **/
+
+#sidebar{
+    background-color: #00B3BE;
+}
+
+/** Dashboard **/
+
+#dash{
+    background-color: #F3F3F3;
+}
+
+.card{
+    background: #FFF;
+    margin-top:20px;
+    -webkit-box-shadow: 2px 2px 13px -5px rgba(0,0,0,0.69);
+    box-shadow: 2px 2px 13px -5px rgba(0,0,0,0.69);
+}
+
+#temperature,
+#affluence,
+#humidity{
+    height: 240px;
+
+}
+
+#greeting{
+    height: 100px;
+    text-align: center;
+}
+
+#greeting > h1{
+    font-weight: 300;
+    font-style: normal;
+}
+
+#gases{
+    height: 250px;
+}
+
+#map{
+    height: 290px;
+}
