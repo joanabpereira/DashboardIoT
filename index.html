@@ -7,59 +7,65 @@
         <title>Dashboard IoT</title>
         <link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/chartist.min.css">
 		<link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="container-fluid">
             <div class="row">
-                <section id="sidebar" class="col-md-3">
-
+                <section id="sidebar" class="col-md-2 sidebar">
+                    <div class="sidebar__logo--outfit">
+                        <img src="img/Outfit_White.png" />
+                    </div>
+                    <div class="sidebar__logo--bold">
+                        <img src="img/poweredByBOLD.PNG" />
+                    </div>
                 </section>
-                <section id="dash" class="col-md-9">
+                <section id="dash" class="dashboard col-md-10">
                     <div class"row">
                         <div class="col-md-6">
-                            <div id="greeting" class="card col-md-12">
+                            <div id="greeting" class="greeting card col-md-12">
                                 <h1>Good morning!</h1>
                             </div>
-                            <div id="temperature" class="card col-md-12">
+                            <div id="temperature" class="temperature card col-md-12">
                                 <div class="temperature__title">
                                     <h4>Temperature</h4>
                                 </div>
                                 <div class="gauge gauge-temperature">
                                     <h2><i class="fa fa-thermometer-half" aria-hidden="true"></i> 27</h2>
-                                    <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
-                                        <g>
-                                            <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" fill="none"/>
-                                        </g>
+                                    <svg width="160px" height="160px" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
+                                        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ce4b99" stroke-width="3" stroke-dasharray="51 49" stroke-dashoffset="25"></circle>
                                     </svg>
                                 </div>
+                                <div class="temperature__chart">
+
+                                </div>
                             </div>
-                            <div id="humidity" class="card col-md-12">
+                            <div id="humidity" class="humidity card col-md-12">
                                 <div class="humidity__title">
                                     <h4>Humidity</h4>
                                 </div>
                                 <div class="gauge gauge-humidity">
                                     <h2><i class="fa fa-tint" aria-hidden="true"></i> 56%</h2>
-                                    <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
-                                        <g>
-                                            <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" fill="none"/>
-                                        </g>
+                                    <svg width="160" height="160" viewBox="0 0 42 42" class="donut">
+                                        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ce4b99" stroke-width="3" stroke-dasharray="56 44" stroke-dashoffset="25"></circle>
                                     </svg>
+                                </div>
+                                <div class="humidity__chart">
+                                    <div id="temp"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div id="affluence" class="card col-md-12">
+                            <div id="affluence" class="affluence card col-md-12">
                                 <div class="affluence__title">
                                     <h4>Affluence</h4>
                                 </div>
                                 <div class="gauge gauge-affluence">
                                     <h2><i class="fa fa-user-o" aria-hidden="true"></i> 135</h2>
                                     <div>
-                                        <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
-                                            <g>
-                                                <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" fill="none"/>
-                                            </g>
+                                        <svg width="160" height="160" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
+                                            <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ce4b99" stroke-width="3" stroke-dasharray="67 33" stroke-dashoffset="25"></circle>
                                         </svg>
                                     </div>
                                 </div>
@@ -89,13 +95,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="gases" class="card col-md-12">
+                            <div id="gases" class="gases card col-md-12">
                                 <div class="gases__title">
                                     <h4>Gases</h4>
                                 </div>
+                                <div class="gases__chart">
+                                    <div id="container"></div>
+                                </div>
                             </div>
-                            <div id="map" class="card col-md-12">
-                                <div>
+                            <div id="map" class="map card col-md-12">
+                                <div class="map__title">
                                     <h4>Map</h4>
                                 </div>
                             </div>
@@ -104,7 +113,129 @@
                 </section>
             </div>
         </div>
+        <script src="https://use.fontawesome.com/6a96b11941.js"></script>
+        <script src="https://code.highcharts.com/js/highcharts.js"></script>
+        <script src="https://code.highcharts.com/js/modules/exporting.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+
+                Highcharts.chart('container', {
+
+                    xAxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    },
+
+                    defs: {
+                        gradient0: {
+                            tagName: 'linearGradient',
+                            id: 'gradient-0',
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1,
+                            children: [{
+                                tagName: 'stop',
+                                offset: 0
+                            }, {
+                                tagName: 'stop',
+                                offset: 1
+                            }]
+                        },
+                        gradient1: {
+                            tagName: 'linearGradient',
+                            id: 'gradient-1',
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1,
+                            children: [{
+                                tagName: 'stop',
+                                offset: 0
+                            }, {
+                                tagName: 'stop',
+                                offset: 1
+                            }]
+                        }
+                    },
+
+                    series: [{
+                        type: 'areaspline',
+                        keys: ['y', 'selected'],
+                        data: [
+                            [0.09, false],
+                            [0.09, false],
+                            [0.09, false],
+                            [0.10, false],
+                            [0.85, false],
+                            [0.27, false],
+                            [1.07, false],
+                            [1.07, false],
+                            [1.09, true],
+                            [1.05, false],
+                            [1.08, false],
+                            [1.07, false]
+                        ]
+                    }]
+                });
+                Highcharts.chart('temp', {
+
+                    xAxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    },
+
+                    defs: {
+                        gradient0: {
+                            tagName: 'linearGradient',
+                            id: 'gradient-hum0',
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1,
+                            children: [{
+                                tagName: 'stop',
+                                offset: 0
+                            }, {
+                                tagName: 'stop',
+                                offset: 1
+                            }]
+                        },
+                        gradient1: {
+                            tagName: 'linearGradient',
+                            id: 'gradient-hum1',
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1,
+                            children: [{
+                                tagName: 'stop',
+                                offset: 0
+                            }, {
+                                tagName: 'stop',
+                                offset: 1
+                            }]
+                        }
+                    },
+                    series: [{
+                        type: 'areaspline',
+                        keys: ['y', 'selected'],
+                        color: '#073B4C',
+                        data: [
+                            [23, false],
+                            [23, false],
+                            [24, false],
+                            [28, false],
+                            [33, false],
+                            [34, false],
+                            [39, false],
+                            [42, false],
+                            [47, true],
+                            [45, false],
+                            [43, false],
+                            [49, false]
+                        ]
+                    }]
+                });
+            });
+        </script>
     </body>
-    <script src="https://use.fontawesome.com/6a96b11941.js"></script>
-    <script src=""></script>
 </html>

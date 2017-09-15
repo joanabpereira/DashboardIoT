@@ -3,6 +3,8 @@
 * Version 1.0 - September 2017
 ***************************************/
 
+@import 'https://code.highcharts.com/css/highcharts.css';
+
 /**
 * 0 - Resets
 * 1 - DRY
@@ -16,11 +18,16 @@
 * 7 - Gases
 * 8 - Map
 * 9 - Circles
-* 10 - Animations
+* 10 - Graphs
+** 10.1 - Temperature
+** 10.2 - Humidity
+** 10.3 - Gases
+* 11 - Animations
 **/
 
 /****** 0 - Resets *****/
 body{
+    background-color: #F3F3F3;
     color: #444;
     font-family: 'Lato', Helvetica, Arial, sans-serif;
     font-size: 1.6em;
@@ -43,8 +50,8 @@ h1, h2, h3, h4, h5, h6{
 /** 1 - DRY **/
 
 /* 1.1 - Containers */
-#sidebar,
-#dashboard{
+.sidebar,
+.dashboard{
     height: 100vh;
 }
 
@@ -70,61 +77,84 @@ h1, h2, h3, h4, h5, h6{
 
 /** 2 - Sidebar **/
 
-#sidebar{
-    background-color: #00B3BE;
+.sidebar{
+    background: url('../img/luca-bravo-132630.jpg');
+    background-size:cover;
+    padding: 0;
+    position: fixed;
+}
+
+.sidebar__image img,
+.sidebar__logo--outfit img,
+.sidebar__logo--bold img{
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebar__logo--outfit{
+    top: 20px;
+    position: absolute;
+}
+
+.sidebar__logo--bold {
+    bottom: 20px;
+    position: absolute;
 }
 
 /** 3 - Dashboard **/
 
-#dash{
+.dashboard{
     background-color: #F3F3F3;
+    float:right;
 }
 
 .card{
     background: #FFF;
     margin-top:20px;
+    padding-left:15px;
+    padding-right: 15px;
     -webkit-box-shadow: 2px 2px 13px -5px rgba(0,0,0,0.69);
     box-shadow: 2px 2px 13px -5px rgba(0,0,0,0.69);
 }
 
-#temperature,
-#affluence,
-#humidity{
+.temperature,
+.affluence,
+.humidity{
     height: 440px;
-
+    padding-bottom: 10px;
 }
 
-#greeting{
+.greeting{
     align-items: center;
     display: flex;
     height: 100px;
     justify-content: center;
 }
 
-#greeting > h1{
-    font-size: 3.5rem;
+.greeting > h1{
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 300;
     margin: 0px;
 }
 
-#gases{
+.gases{
     height: 250px;
 }
 
-#map{
+.map{
     height: 290px;
 }
 
 /* 4 - Temperature */
-
+.gauge-temperature h2,
 .gauge-temperature.gauge svg circle{
     stroke: #00B3BE;
 }
 
 /* 5 - Humidity */
 .humidity__title{}
-#humidty > h4{
+.humidty > h4{
     color: #073B4C;
 }
 .gauge-humidity.gauge svg circle {
@@ -189,6 +219,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .gauge h2 {
+    font-size: 1.5rem;
     line-height: 125px;
     position: absolute;
     margin: 0px;
@@ -196,26 +227,114 @@ h1, h2, h3, h4, h5, h6{
     width: 100%;
 }
 
-svg {
-    transform: rotate(-90deg);
-}
-
-svg circle{
+.gauge svg circle{
     stroke-linecap: round;
-    stroke-width: 5;
+    stroke-width: 2px;
 }
 
-.circle_animation {
-  stroke-dasharray: 440;
-  stroke-dashoffset: 440;
+/*.circle_animation {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
 }
 
 .gauge .circle_animation {
-    animation: html 1s ease-out forwards;
-    -webkit-animation: html 1s ease-out forwards;
+    animation: css 1s ease-out forwards;
+    -webkit-animation: css 1s ease-out forwards;
+}*/
+
+/* 10 - Graph */
+
+/* 10.1 - Temperature */
+#gradient-temp0 stop {
+	stop-color: #00B3B0;
+}
+#gradient-temp0 stop[offset="0"] {
+	stop-opacity: 0.75;
+}
+#gradient-temp0 stop[offset="1"] {
+	stop-opacity: 0;
+}
+#gradient-temp1 stop {
+	stop-color: #FFF;
+}
+#gradient-temp1 stop[offset="0"] {
+	stop-opacity: 0;
+}
+#gradient-temp1 stop[offset="1"] {
+	stop-opacity: 0.25;
 }
 
-/* 10 - Animations */
+/* Apply the gradients */
+.temperature__chart .highcharts-plot-background {
+	fill: url(#gradient-temp1);
+}
+.temperature__chart .highcharts-color-0 .highcharts-area {
+	fill-opacity: 1;
+	fill: url(#gradient-temp0);
+}
+
+/* 10.2 - Humidity */
+#gradient-hum0 stop {
+	stop-color: #073B4C;
+}
+#gradient-hum0 stop[offset="0"] {
+	stop-opacity: 0.75;
+}
+#gradient-hum0 stop[offset="1"] {
+	stop-opacity: 0;
+}
+#gradient-hum1 stop {
+	stop-color: #FFF;
+}
+#gradient-hum1 stop[offset="0"] {
+	stop-opacity: 0;
+}
+#gradient-hum1 stop[offset="1"] {
+	stop-opacity: 0.25;
+}
+
+/* Apply the gradients */
+.humidity__chart .highcharts-plot-background {
+	fill: url(#gradient-hum1);
+}
+.humidity__chart .highcharts-color-0 .highcharts-area {
+	fill-opacity: 1;
+	fill: url(#gradient-hum0);
+    stroke: #073B4C;
+}
+
+/* 10.3 - Gases*/
+
+/* Define the stop colors */
+#gradient-0 stop {
+	stop-color: #00B3B0;
+}
+#gradient-0 stop[offset="0"] {
+	stop-opacity: 0.75;
+}
+#gradient-0 stop[offset="1"] {
+	stop-opacity: 0;
+}
+#gradient-1 stop {
+	stop-color: #FFF;
+}
+#gradient-1 stop[offset="0"] {
+	stop-opacity: 0;
+}
+#gradient-1 stop[offset="1"] {
+	stop-opacity: 0.25;
+}
+
+/* Apply the gradients */
+.gases__chart .highcharts-plot-background {
+	fill: url(#gradient-1);
+}
+.gases__chart .highcharts-color-0 .highcharts-area {
+	fill-opacity: 1;
+	fill: url(#gradient-0);
+}
+
+/* 11 - Animations */
 
 @-webkit-keyframes html {
   to {
@@ -231,12 +350,12 @@ svg circle{
 
 @-webkit-keyframes css {
   to {
-    stroke-dashoffset: 160;
+    stroke-dashoffset: 100;
   }
 }
 
 @keyframes css {
   to {
-    stroke-dashoffset: 160;
+    stroke-dashoffset: 100;
   }
 }
